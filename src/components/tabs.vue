@@ -1,16 +1,16 @@
 <template>
 	<div class="parent">
 		<router-link to="/" v-slot="{ href, navigate }">
-			<a :href="href" @click="navigate">Model {{ isActive }}</a>
+			<a :href="href" @click="navigate">Model</a>
 		</router-link>
 		<router-link to="/admin" v-slot="{ href, navigate }">
-			<a :href="href" @click="navigate">Admin {{ isActive }}</a>
+			<a :href="href" @click="navigate">Admin</a>
 		</router-link>
 		<router-link to="/serializers" v-slot="{ href, navigate }">
-			<a :href="href" @click="navigate">Serializer {{ isActive }}</a>
+			<a :href="href" @click="navigate">Serializer</a>
 		</router-link>
 		<router-link to="/viewsets" v-slot="{ href, navigate }">
-			<a :href="href" @click="navigate">Views {{ isActive }}</a>
+			<a :href="href" @click="navigate">Views</a>
 		</router-link>
 	</div>
 </template>

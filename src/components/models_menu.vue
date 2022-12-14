@@ -2,26 +2,13 @@
 	<div class="parent">
 		<h3>Models</h3>
 		<div class="body">
-			<div style="margin: 10px;">
+			<div style="padding: 10px;">
 				<button @click="models.push({})">
 					[+] Ajouter
 				</button>
 			</div>
 			<div class="models">
-				<div v-for="model in models" class="model">
-					<h4 v-if="!!model.name">
-						{{ model.name }}
-					</h4>
-					<input
-						type="text"
-						placeholder="nom du model"
-						@change="e => renameModel(model, e.target.value)"
-						v-else>
-					<div class="btns">
-						<div class="btn red">delete</div>
-						<div class="btn blue">download</div>
-					</div>
-				</div>
+				<Model v-for="model in models" :item="model"/>
 			</div>
 		</div>
 		<button class="down">
@@ -31,20 +18,19 @@
 </template>
 
 <script>
+import Model from "../components/model_item"
 export default {
+  components:{
+  	Model
+  },
   data(){
     return {
-      models:this.$store.state.models,
+      models:this.$store.state.models
     }
   },
   watch:{
   	models(new_val){
   		this.$store.state.models = new_val
-  	}
-  },
-  methods:{
-  	renameModel(model, val){
-  		model.name = val.charAt(0).toUpperCase() + val.slice(1)
   	}
   }
 }
@@ -77,34 +63,5 @@ button{
 }
 .down:active{
 	background-color: steelblue;
-}
-.model{
-	padding: 10px;
-	border-bottom: 1px solid lightgray;
-}
-.model:hover{
-	background-color: #f0f0f0;
-}
-.model input{
-	padding: 5px;
-	width: 100%;
-}
-.model .btns{
-	display: flex;
-	justify-content: space-between;
-	font-size: .8em;
-}
-.model .btn:hover{
-	text-decoration: underline;
-	cursor: default;
-}
-.model .btn{
-	margin: 5px 0 0 0;
-}
-.red{
-	color: red;
-}
-.blue{
-	color: blue;
 }
 </style>
