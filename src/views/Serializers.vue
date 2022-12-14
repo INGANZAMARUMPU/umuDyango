@@ -1,9 +1,8 @@
 <template>
-  <div class="home">
+  <div class="parent">
+    Serializer
   </div>
 </template>
 
 <script>
-export default {
-}
 </script>

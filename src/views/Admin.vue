@@ -1,9 +1,8 @@
 <template>
-  <div class="home">
+  <div class="parent">
+    Admin
   </div>
 </template>
 
 <script>
-export default {
-}
 </script>

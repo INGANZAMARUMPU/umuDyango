@@ -31,7 +31,7 @@ export default {
 <style scoped>
 .parent{
 	height: 100vh;
-	max-width: 250px;
+	width: 250px;
 	background-color: white;
 	display: flex;
 	flex-direction: column;

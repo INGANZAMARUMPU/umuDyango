@@ -1,7 +1,9 @@
 <template>
   <ModelsMenu/>
+  <div class="router-view">
+    <router-view/>
+  </div>
   <Tabs/>
-  <router-view/>
 </template>
 <script>
 import ModelsMenu from "./components/models_menu"

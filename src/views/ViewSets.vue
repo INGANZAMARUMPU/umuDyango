@@ -1,6 +1,6 @@
 <template>
   <div class="parent">
-    Models
+    ViewSet
   </div>
 </template>
 
