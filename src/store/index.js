@@ -7,16 +7,19 @@ export default createStore({
       {
         "BigAutoField":{
           primary_key:[true, false],
+          unique:[true, false],
         }
       },
       {
         "AutoField":{
-          primary_key:[true, false]
+          primary_key:[true, false],
+          unique:[true, false],
         }
       },
       {
         "IntegerField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:[0],
           editable:[true, false],
@@ -26,6 +29,7 @@ export default createStore({
       {
         "BigIntegerField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:[0],
           editable:[true, false],
@@ -35,6 +39,7 @@ export default createStore({
       {
         "PositiveIntegerField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:[0],
           editable:[true, false],
@@ -44,6 +49,7 @@ export default createStore({
       {
         "FloatField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:"",
           editable:[true, false]
@@ -52,6 +58,7 @@ export default createStore({
       {
         "BooleanField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:[true, false],
           editable:[true, false]
@@ -60,6 +67,7 @@ export default createStore({
       {
         "CharField":{
           max_length:null,
+          unique:[true, false],
           null:[true, false],
           blank:[true, false],
           default:"",
@@ -70,6 +78,7 @@ export default createStore({
       {
         "TextField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:"",
           editable:[true, false]
@@ -78,6 +87,7 @@ export default createStore({
       {
         "DateField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:{"timezone.now": [true, false]},
           editable:[true, false],
@@ -88,6 +98,7 @@ export default createStore({
       {
         "TimeField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:{"timezone.now": [true, false]},
           editable:[true, false],
@@ -98,6 +109,7 @@ export default createStore({
       {
         "DateTimeField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           default:{"timezone.now": [true, false]},
           editable:[true, false],
@@ -116,6 +128,7 @@ export default createStore({
       {
         "ForeignKey":{
           model:null,
+          unique:[true, false],
           default:"",
           editable:[true, false],
           on_delete:null,
@@ -125,6 +138,7 @@ export default createStore({
       {
         "ImageField":{
           null:[true, false],
+          unique:[true, false],
           blank:[true, false],
           editable:[true, false],
           upload_to:"api/images"
@@ -137,46 +151,113 @@ export default createStore({
         fields:[
           {
             id:{
+              "BigAutoField":{
+                primary_key:true,
+              }
             }
           },
           {
             password:{
+              "CharField":{
+                max_length:128,
+                null:true,
+                blank:true,
+                default:"",
+                editable:true
+              }
             }
           },
           {
             last_login:{
+              "DateTimeField":{
+                null:true,
+                blank:true,
+                editable:true,
+                auto_now:true
+              }
             }
           },
           {
             is_superuser:{
+              "BooleanField":{
+                null:false,
+                blank:true,
+                default: false,
+                editable:true
+              }
             }
           },
           {
             username:{
+              "CharField":{
+                max_length:150,
+                null:false,
+                blank:false,
+                editable:true
+              }
             }
           },
           {
             last_name:{
+              "CharField":{
+                max_length:150,
+                null:true,
+                blank:true,
+                default:"",
+                editable:true
+              }
             }
           },
           {
             email:{
+              "CharField":{
+                max_length:256,
+                null:true,
+                blank:true,
+                default:"",
+                editable:true
+              }
             }
           },
           {
             is_staff:{
+              "BooleanField":{
+                null:false,
+                blank:true,
+                default: false,
+                editable:true
+              }
             }
           },
           {
             is_active:{
+              "BooleanField":{
+                null:false,
+                blank:true,
+                default: false,
+                editable:true
+              }
             }
           },
           {
             date_joined:{
+              "DateTimeField":{
+                null:true,
+                blank:true,
+                editable:true,
+                auto_now_add:true
+              }
             }
           },
           {
             first_name:{
+              "CharField":{
+                max_length:150,
+                null:true,
+                blank:true,
+                default:"",
+                editable:true
+              }
             }
           },
         ]
