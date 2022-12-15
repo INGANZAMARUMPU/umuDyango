@@ -18,7 +18,7 @@ export default createStore({
       },
       {
         "IntegerField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:[0],
@@ -28,7 +28,7 @@ export default createStore({
       },
       {
         "BigIntegerField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:[0],
@@ -38,7 +38,7 @@ export default createStore({
       },
       {
         "PositiveIntegerField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:[0],
@@ -48,7 +48,7 @@ export default createStore({
       },
       {
         "FloatField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:"",
@@ -57,7 +57,7 @@ export default createStore({
       },
       {
         "BooleanField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:[true, false],
@@ -68,7 +68,7 @@ export default createStore({
         "CharField":{
           max_length:null,
           unique:[true, false],
-          null:[true, false],
+          "null":[true, false],
           blank:[true, false],
           default:"",
           editable:[true, false],
@@ -77,7 +77,7 @@ export default createStore({
       },
       {
         "TextField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:"",
@@ -86,7 +86,7 @@ export default createStore({
       },
       {
         "DateField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:{"timezone.now": [true, false]},
@@ -97,7 +97,7 @@ export default createStore({
       },
       {
         "TimeField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:{"timezone.now": [true, false]},
@@ -108,7 +108,7 @@ export default createStore({
       },
       {
         "DateTimeField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           default:{"timezone.now": [true, false]},
@@ -137,7 +137,7 @@ export default createStore({
       },
       {
         "ImageField":{
-          null:[true, false],
+          "null":[true, false],
           unique:[true, false],
           blank:[true, false],
           editable:[true, false],
@@ -160,7 +160,7 @@ export default createStore({
             password:{
               "CharField":{
                 max_length:128,
-                null:true,
+                "null":true,
                 blank:true,
                 default:"",
                 editable:true
@@ -170,7 +170,7 @@ export default createStore({
           {
             last_login:{
               "DateTimeField":{
-                null:true,
+                "null":true,
                 blank:true,
                 editable:true,
                 auto_now:true
@@ -180,7 +180,7 @@ export default createStore({
           {
             is_superuser:{
               "BooleanField":{
-                null:false,
+                "null":false,
                 blank:true,
                 default: false,
                 editable:true
@@ -191,7 +191,7 @@ export default createStore({
             username:{
               "CharField":{
                 max_length:150,
-                null:false,
+                "null":false,
                 blank:false,
                 editable:true
               }
@@ -201,7 +201,7 @@ export default createStore({
             last_name:{
               "CharField":{
                 max_length:150,
-                null:true,
+                "null":true,
                 blank:true,
                 default:"",
                 editable:true
@@ -212,7 +212,7 @@ export default createStore({
             email:{
               "CharField":{
                 max_length:256,
-                null:true,
+                "null":true,
                 blank:true,
                 default:"",
                 editable:true
@@ -222,7 +222,7 @@ export default createStore({
           {
             is_staff:{
               "BooleanField":{
-                null:false,
+                "null":false,
                 blank:true,
                 default: false,
                 editable:true
@@ -232,7 +232,7 @@ export default createStore({
           {
             is_active:{
               "BooleanField":{
-                null:false,
+                "null":false,
                 blank:true,
                 default: false,
                 editable:true
@@ -242,7 +242,7 @@ export default createStore({
           {
             date_joined:{
               "DateTimeField":{
-                null:true,
+                "null":true,
                 blank:true,
                 editable:true,
                 auto_now_add:true
@@ -253,7 +253,7 @@ export default createStore({
             first_name:{
               "CharField":{
                 max_length:150,
-                null:true,
+                "null":true,
                 blank:true,
                 default:"",
                 editable:true
