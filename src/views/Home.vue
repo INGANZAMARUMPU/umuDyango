@@ -1,8 +1,18 @@
 <template>
   <div class="parent">
-    Models
+    <div class="btns">
+      <button>Ajouter un champ</button>
+      <button>Ajouter une contrainte</button>
+      <button>Ajouter un choix</button>
+    </div>
   </div>
 </template>
 
 <script>
 </script>
+
+<style scoped>
+.btns>button{
+  margin-right: 10px;
+}
+</style>
