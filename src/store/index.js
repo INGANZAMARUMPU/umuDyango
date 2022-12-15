@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    choices:[],
     fields: [
       {
         "BigAutoField":{
@@ -19,7 +20,7 @@ export default createStore({
           blank:[true, false],
           default:[0],
           editable:[true, false],
-          choices:this.choices
+          choices:"this.choices"
         }
       },
       {
@@ -28,7 +29,7 @@ export default createStore({
           blank:[true, false],
           default:[0],
           editable:[true, false],
-          choices:this.choices
+          choices:"this.choices"
         }
       },
       {
@@ -37,7 +38,7 @@ export default createStore({
           blank:[true, false],
           default:[0],
           editable:[true, false],
-          choices:this.choices
+          choices:"this.choices"
         }
       },
       {
@@ -63,7 +64,7 @@ export default createStore({
           blank:[true, false],
           default:"",
           editable:[true, false],
-          choices:this.choices
+          choices:"this.choices"
         }
       },
       {

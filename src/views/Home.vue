@@ -3,7 +3,6 @@
     <div class="btns">
       <button>Ajouter un champ</button>
       <button>Ajouter une contrainte</button>
-      <button>Ajouter un choix</button>
     </div>
   </div>
 </template>

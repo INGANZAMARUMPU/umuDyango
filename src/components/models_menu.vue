@@ -1,14 +1,30 @@
 <template>
 	<div class="parent">
-		<h3>Models</h3>
-		<div class="body">
+		<div class="classes">
+			<h3 @click="active='models'" :class="{'active': active=='models'}">
+				Models
+			</h3>
+			<h3 @click="active='choices'" :class="{'active': active=='choices'}">
+				Choices
+			</h3>
+		</div>
+		<div class="body" v-if="active=='models'">
 			<div style="padding: 10px;">
 				<button @click="models.push({})">
 					[+] Ajouter
 				</button>
 			</div>
-			<div class="models">
+			<div>
 				<Model v-for="model in models" :item="model"/>
+			</div>
+		</div>
+		<div class="body" v-else>
+			<div style="padding: 10px;">
+				<button @click="models.push({})">
+					[+] Ajouter
+				</button>
+			</div>
+			<div>
 			</div>
 		</div>
 		<button class="down">
@@ -25,7 +41,8 @@ export default {
   },
   data(){
     return {
-      models:this.$store.state.models
+      models:this.$store.state.models,
+      active: 'models'
     }
   },
   watch:{
@@ -43,10 +60,21 @@ export default {
 	display: flex;
 	flex-direction: column;
 }
-h3{
+.classes{
 	text-align: center;
 	background-color: lightgray;
-	padding: 10px 20px;
+	display: flex;
+	padding: 15px 0 0 10px;
+}
+h3{
+	border: 1px solid darkgray;
+	border-bottom: 0;
+	padding: 5px 10px;
+	border-radius: 10px 10px 0 0;
+	cursor: default;
+}
+h3.active{
+	background-color: white;
 }
 button{
 	width: 100%;
