@@ -15,7 +15,10 @@
 				</button>
 			</div>
 			<div>
-				<Model v-for="model in models" :item="model"/>
+				<Model
+					v-for="model in models"
+					:item="model"
+					@click="$store.state.selected_model=model"/>
 			</div>
 		</div>
 		<div class="body" v-else>
@@ -49,6 +52,9 @@ export default {
   	models(new_val){
   		this.$store.state.models = new_val
   	}
+  },
+  mounted(){
+    this.$store.state.current_model = this.$store.state.models[0]
   }
 }
 </script>
