@@ -6,120 +6,120 @@ export default createStore({
     fields: [
       {
         "BigAutoField":{
-          primary_key:[true, false],
-          unique:[true, false],
+          primary_key:[null, true, false],
+          unique:[null, true, false],
         }
       },
       {
         "AutoField":{
-          primary_key:[true, false],
-          unique:[true, false],
+          primary_key:[null, true, false],
+          unique:[null, true, false],
         }
       },
       {
         "IntegerField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:[0],
-          editable:[true, false],
-          choices:"this.choices"
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:0,
+          editable:[null, true, false],
+          choices:""
         }
       },
       {
         "BigIntegerField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:[0],
-          editable:[true, false],
-          choices:"this.choices"
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:0,
+          editable:[null, true, false],
+          choices:""
         }
       },
       {
         "PositiveIntegerField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:[0],
-          editable:[true, false],
-          choices:"this.choices"
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:0,
+          editable:[null, true, false],
+          choices:""
         }
       },
       {
         "FloatField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
           default:"",
-          editable:[true, false]
+          editable:[null, true, false]
         }
       },
       {
         "BooleanField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:[true, false],
-          editable:[true, false]
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:[null, true, false],
+          editable:[null, true, false]
         }
       },
       {
         "CharField":{
           max_length:null,
-          unique:[true, false],
-          "null":[true, false],
-          blank:[true, false],
+          unique:[null, true, false],
+          "null":[null, true, false],
+          blank:[null, true, false],
           default:"",
-          editable:[true, false],
-          choices:"this.choices"
+          editable:[null, true, false],
+          choices:""
         }
       },
       {
         "TextField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
           default:"",
-          editable:[true, false]
+          editable:[null, true, false]
         }
       },
       {
         "DateField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:{"timezone.now": [true, false]},
-          editable:[true, false],
-          auto_now:[true, false],
-          auto_now_add:[true, false]
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:{"timezone.now": [null, true, false]},
+          editable:[null, true, false],
+          auto_now:[null, true, false],
+          auto_now_add:[null, true, false]
         }
       },
       {
         "TimeField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:{"timezone.now": [true, false]},
-          editable:[true, false],
-          auto_now:[true, false],
-          auto_now_add:[true, false]
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:{"timezone.now": [null, true, false]},
+          editable:[null, true, false],
+          auto_now:[null, true, false],
+          auto_now_add:[null, true, false]
         }
       },
       {
         "DateTimeField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          default:{"timezone.now": [true, false]},
-          editable:[true, false],
-          auto_now:[true, false],
-          auto_now_add:[true, false]
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          default:{"timezone.now": [null, true, false]},
+          editable:[null, true, false],
+          auto_now:[null, true, false],
+          auto_now_add:[null, true, false]
         }
       },
       {
         "OneToOneField":{
-          editable:[true, false],
+          editable:[null, true, false],
           model:null,
           related_name:null,
           on_delete:null,
@@ -128,19 +128,19 @@ export default createStore({
       {
         "ForeignKey":{
           model:null,
-          unique:[true, false],
+          unique:[null, true, false],
           default:"",
-          editable:[true, false],
+          editable:[null, true, false],
           on_delete:null,
           related_name:null
         }
       },
       {
         "ImageField":{
-          "null":[true, false],
-          unique:[true, false],
-          blank:[true, false],
-          editable:[true, false],
+          "null":[null, true, false],
+          unique:[null, true, false],
+          blank:[null, true, false],
+          editable:[null, true, false],
           upload_to:"api/images"
         }
       },

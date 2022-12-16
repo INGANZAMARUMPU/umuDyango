@@ -14,10 +14,10 @@
       </div>
       <div class="properties" v-if="current_field">
         <div class="field">
-          <label>{{ Object.keys(current_field)[0] }}</label>
+          <h3>{{ Object.keys(current_field)[0] }}</h3>
           <select v-model="current_field_type">
             <option
-              v-for="field in $store.state.fields"
+              v-for="field, i in $store.state.fields"
               :value="Object.keys(field)[0]">
               {{ Object.keys(field)[0] }}
             </option>
@@ -25,7 +25,22 @@
         </div>
         <div class="field" v-for="key in Object.keys(current_field_fields)">
           <label>{{ key }}</label>
-          <input type="text"/>
+          <select v-if="Array.isArray(current_field_fields[key])">
+            <option
+              v-for="value in current_field_fields[key]"
+              :value="value">
+              {{ value }}
+            </option>
+          </select>
+          <input type="number" v-else-if="typeof(current_field_fields[key]) == 'number'"/>
+          <select v-else-if="key == 'choices'">
+            <option
+              v-for="value in 1"
+              :value="value">
+              not yet implemented
+            </option>
+          </select>
+          <input type="text" v-else/>
         </div>
       </div>
     </div>
@@ -85,7 +100,14 @@ export default {
   overflow-y: scroll;
   margin-right: 20px;
 }
+.field{
+  margin-bottom: 10px;
+}
 .field>*{
   display: block;
+}
+.field>input, .field>select{
+  padding: 5px 10px;
+  width: 200px;
 }
 </style>
