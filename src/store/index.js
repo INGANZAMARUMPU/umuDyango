@@ -5,19 +5,22 @@ export default createStore({
     choices:[],
     fields: [
       {
-        "BigAutoField":{
+        name:"BigAutoField",
+        fields:{
           primary_key:[null, true, false],
           unique:[null, true, false],
         }
       },
       {
-        "AutoField":{
+        name:"AutoField",
+        fields:{
           primary_key:[null, true, false],
           unique:[null, true, false],
         }
       },
       {
-        "IntegerField":{
+        name:"IntegerField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -27,7 +30,8 @@ export default createStore({
         }
       },
       {
-        "BigIntegerField":{
+        name:"BigIntegerField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -37,7 +41,8 @@ export default createStore({
         }
       },
       {
-        "PositiveIntegerField":{
+        name:"PositiveIntegerField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -47,7 +52,8 @@ export default createStore({
         }
       },
       {
-        "FloatField":{
+        name:"FloatField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -56,7 +62,8 @@ export default createStore({
         }
       },
       {
-        "BooleanField":{
+        name:"BooleanField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -65,7 +72,8 @@ export default createStore({
         }
       },
       {
-        "CharField":{
+        name:"CharField",
+        fields:{
           max_length:null,
           unique:[null, true, false],
           "null":[null, true, false],
@@ -76,7 +84,8 @@ export default createStore({
         }
       },
       {
-        "TextField":{
+        name:"TextField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -85,7 +94,8 @@ export default createStore({
         }
       },
       {
-        "DateField":{
+        name:"DateField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -96,7 +106,8 @@ export default createStore({
         }
       },
       {
-        "TimeField":{
+        name:"TimeField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -107,7 +118,8 @@ export default createStore({
         }
       },
       {
-        "DateTimeField":{
+        name:"DateTimeField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -118,7 +130,8 @@ export default createStore({
         }
       },
       {
-        "OneToOneField":{
+        name:"OneToOneField",
+        fields:{
           editable:[null, true, false],
           model:null,
           related_name:null,
@@ -126,7 +139,8 @@ export default createStore({
         }
       },
       {
-        "ForeignKey":{
+        name:"ForeignKey",
+        fields:{
           model:null,
           unique:[null, true, false],
           default:"",
@@ -136,7 +150,8 @@ export default createStore({
         }
       },
       {
-        "ImageField":{
+        name:"ImageField",
+        fields:{
           "null":[null, true, false],
           unique:[null, true, false],
           blank:[null, true, false],
@@ -151,113 +166,102 @@ export default createStore({
         fields:[
           {
             id:{
-              "BigAutoField":{
-                primary_key:true,
-              }
+              type: "BigAutoField",
+              primary_key:true,
             }
           },
           {
             password:{
-              "CharField":{
-                max_length:128,
-                "null":true,
-                blank:true,
-                default:"",
-                editable:true
-              }
+              type: "CharField",
+              max_length:128,
+              "null":true,
+              blank:true,
+              default:"",
+              editable:true
             }
           },
           {
             last_login:{
-              "DateTimeField":{
-                "null":true,
-                blank:true,
-                editable:true,
-                auto_now:true
-              }
+              type: "DateTimeField",
+              "null":true,
+              blank:true,
+              editable:true,
+              auto_now:true
             }
           },
           {
             is_superuser:{
-              "BooleanField":{
-                "null":false,
-                blank:true,
-                default: false,
-                editable:true
-              }
+              type: "BooleanField",
+              "null":false,
+              blank:true,
+              default: false,
+              editable:true
             }
           },
           {
             username:{
-              "CharField":{
-                max_length:150,
-                "null":false,
-                blank:false,
-                editable:true
-              }
+              type: "CharField",
+              max_length:150,
+              "null":false,
+              blank:false,
+              editable:true
             }
           },
           {
             last_name:{
-              "CharField":{
-                max_length:150,
-                "null":true,
-                blank:true,
-                default:"",
-                editable:true
-              }
+              type: "CharField",
+              max_length:150,
+              "null":true,
+              blank:true,
+              default:"",
+              editable:true
             }
           },
           {
             email:{
-              "CharField":{
-                max_length:256,
-                "null":true,
-                blank:true,
-                default:"",
-                editable:true
-              }
+              type: "CharField",
+              max_length:256,
+              "null":true,
+              blank:true,
+              default:"",
+              editable:true
             }
           },
           {
             is_staff:{
-              "BooleanField":{
-                "null":false,
-                blank:true,
-                default: false,
-                editable:true
-              }
+              type: "BooleanField",
+              "null":false,
+              blank:true,
+              default: false,
+              editable:true
             }
           },
           {
             is_active:{
-              "BooleanField":{
-                "null":false,
-                blank:true,
-                default: false,
-                editable:true
-              }
+              type: "BooleanField",
+              "null":false,
+              blank:true,
+              default: false,
+              editable:true
             }
           },
           {
             date_joined:{
-              "DateTimeField":{
-                "null":true,
-                blank:true,
-                editable:true,
-                auto_now_add:true
-              }
+              type: "DateTimeField",
+              "null":true,
+              blank:true,
+              editable:true,
+              auto_now_add:true
             }
           },
           {
             first_name:{
-              "CharField":{
-                max_length:150,
-                "null":true,
-                blank:true,
-                default:"",
-                editable:true
-              }
+              type: "CharField",
+              max_length:150,
+              "null":true,
+              blank:true,
+              default:"",
+              editable:true
             }
           },
         ]

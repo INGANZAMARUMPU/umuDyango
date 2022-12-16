@@ -9,23 +9,23 @@
         <Field
           v-for="field in model.fields"
           :item="field"
-          @click="current_field=field"
+          @click="selected_field=field"
           @delete="remove(field)"/>
       </div>
-      <div class="properties" v-if="current_field">
+      <div class="properties" v-if="selected_field">
         <div class="field">
-          <h3>{{ Object.keys(current_field)[0] }}</h3>
-          <select v-model="current_field_type">
+          <h3>{{ selected_field_name }}</h3>
+          <select v-model="current_field.type">
             <option
-              v-for="field, i in $store.state.fields"
-              :value="Object.keys(field)[0]">
-              {{ Object.keys(field)[0] }}
+              v-for="field in $store.state.fields"
+              :value="field.name">
+              {{ field.name }}
             </option>
           </select>
         </div>
         <div class="field" v-for="key in Object.keys(current_field_fields)">
           <label>{{ key }}</label>
-          <select v-if="Array.isArray(current_field_fields[key])">
+          <select v-if="current_field_fields[key]">
             <option
               v-for="value in current_field_fields[key]"
               :value="value">
@@ -54,25 +54,28 @@ export default {
   data(){
     return {
       model: this.$store.state.current_model,
-      current_field:null,
-      current_field_type:""
+      selected_field:null,
+      selected_field_name:"",
+      current_field:{
+        type:""
+      }
     }
   },
   watch:{
     "$store.state.current_model"(new_val){
       this.model = new_val
     },
-    current_field(new_val){
-      let nom = Object.keys(new_val)
-      this.current_field_type =  Object.keys(new_val[nom])[0]
+    selected_field(new_val){
+      this.selected_field_name = Object.keys(new_val)[0]
+      this.current_field.type = this.selected_field[this.selected_field_name].type
     }
   },
   computed:{
     current_field_fields(){
       let fields = this.$store.state.fields
-      for(let type of fields){
-        if(Object.keys(type)[0] == this.current_field_type){
-          return type[this.current_field_type]
+      for(let field of fields){
+        if(field.name == this.current_field.type){
+          return field.fields
         }
       }
       return {}
