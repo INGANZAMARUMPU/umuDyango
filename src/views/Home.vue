@@ -26,7 +26,7 @@
         <div class="field" v-for="key in Object.keys(current_field_fields)">
           <label>{{ key }}</label>
           <select
-            @change="e => setValue(e, key)"
+            v-model="current_field[key]"
             v-if="current_field_fields[key]">
             <option
               v-for="value in current_field_fields[key]"
@@ -35,10 +35,10 @@
             </option>
           </select>
           <input
-            @change="e => setValue(e, key)"
+            v-model="current_field[key]"
             type="number" v-else-if="typeof(current_field_fields[key]) == 'number'"/>
           <select
-            @change="e => setValue(e, key)"
+            v-model="current_field[key]"
             v-else-if="key == 'choices'">
             <option
               v-for="value in 1"
@@ -47,10 +47,9 @@
             </option>
           </select>
           <input
-            @change="e => setValue(e, key)"
+            v-model="current_field[key]"
             type="text" v-else/>
         </div>
-        {{ this.current_field }}
       </div>
     </div>
   </div>
@@ -65,9 +64,7 @@ export default {
       model: this.$store.state.current_model,
       selected_field:null,
       selected_field_name:"",
-      current_field:{
-        type:""
-      }
+      current_field:{}
     }
   },
   watch:{
@@ -76,13 +73,16 @@ export default {
     },
     selected_field(new_val){
       this.selected_field_name = Object.keys(new_val)[0]
-      this.current_field = {
-        type: this.selected_field[this.selected_field_name].type
+      let current_field = this.selected_field[this.selected_field_name]
+      for(let key of Object.keys(current_field)){
+        this.current_field[key] = current_field[key]
       }
     },
     "current_field.type"(new_val){
-      this.current_field = {
-        type: new_val
+      if(new_val != this.selected_field[this.selected_field_name].type){
+        this.current_field = {
+          type: new_val
+        }
       }
     }
   },
@@ -100,13 +100,6 @@ export default {
   methods:{
     remove(field){
     },
-    setValue(event, key){
-      try{
-        this.current_field[key] = eval(event.target.value)
-      } catch(ReferenceError) {
-        this.current_field[key] = event.target.value
-      }
-    }
   },
 }
 </script>
