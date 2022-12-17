@@ -19,7 +19,7 @@
 					v-for="model, i in models"
 					:item="model"
 					@delete="models.splice(i, 1)"
-					@click="$store.state.selected_model=model"/>
+					@click="$store.state.current_model=model"/>
 			</div>
 		</div>
 		<div class="body" v-else>
