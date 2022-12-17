@@ -8,18 +8,19 @@
         [+] Meta contrainte
       </button>
     </div>
+    {{ temp_field }}
     <div class="body">
       <div class="fields">
         <Field
           v-for="field in model.fields"
           :item="field"
-          @click="selected_field=field"
+          @click="temp_field=field"
           @delete="remove(field)"/>
       </div>
-      <div class="properties" v-if="selected_field">
+      <div class="properties" v-if="temp_field">
         <div class="field">
-          <h3>{{ selected_field_name }}</h3>
-          <select v-model="current_field.type">
+          <h3>{{ temp_field.name }}</h3>
+          <select v-model="current_field.fields.type">
             <option
               v-for="field in $store.state.fields"
               :value="field.name">
@@ -27,22 +28,22 @@
             </option>
           </select>
         </div>
-        <div class="field" v-for="key in Object.keys(current_field_fields)">
-          <label>{{ key }}</label>
+        <div class="field" v-for="key in Object.keys(current_field.fields)">
+          <label>{{ key }} ({{ current_field.fields[key] }})</label>
           <select
-            v-model="current_field[key]"
-            v-if="current_field_fields[key]">
+            v-model="current_field.fields[key]"
+            v-if="current_field.fields[key]">
             <option
-              v-for="value in current_field_fields[key]"
+              v-for="value in current_field.fields[key]"
               :value="value">
               {{ value }}
             </option>
           </select>
           <input
-            v-model="current_field[key]"
-            type="number" v-else-if="typeof(current_field_fields[key]) == 'number'"/>
+            v-model="current_field.fields[key]"
+            type="number" v-else-if="typeof(current_field.fields[key]) == 'number'"/>
           <select
-            v-model="current_field[key]"
+            v-model="current_field.fields[key]"
             v-else-if="key == 'choices'">
             <option
               v-for="value in 1"
@@ -51,7 +52,7 @@
             </option>
           </select>
           <input
-            v-model="current_field[key]"
+            v-model="current_field.fields[key]"
             type="text" v-else/>
         </div>
       </div>
@@ -66,8 +67,7 @@ export default {
   data(){
     return {
       model: this.$store.state.current_model,
-      selected_field:null,
-      selected_field_name:"",
+      temp_field:null,
       current_field:{}
     }
   },
@@ -75,31 +75,11 @@ export default {
     "$store.state.current_model"(new_val){
       this.model = new_val
     },
-    selected_field(new_val){
-      this.selected_field_name = Object.keys(new_val)[0]
-      let current_field = this.selected_field[this.selected_field_name]
-      for(let key of Object.keys(current_field)){
-        this.current_field[key] = current_field[key]
-      }
+    temp_field(new_val){
+      this.current_field = JSON.parse(
+        JSON.stringify(this.temp_field)
+      )
     },
-    "current_field.type"(new_val){
-      if(new_val != this.selected_field[this.selected_field_name].type){
-        this.current_field = {
-          type: new_val
-        }
-      }
-    }
-  },
-  computed:{
-    current_field_fields(){
-      let fields = this.$store.state.fields
-      for(let field of fields){
-        if(field.name == this.current_field.type){
-          return field.fields
-        }
-      }
-      return {}
-    }
   },
   methods:{
     remove(field){

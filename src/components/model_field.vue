@@ -5,9 +5,9 @@
 			placeholder="nom du item"
 			@keyup.enter="renameField"
 			v-model="nom"
-			v-if="Object.keys(item).length==0 || edit">
+			v-if="item.name.length==0 || edit">
 		<h4 v-else>
-			{{ Object.keys(item)[0] }}
+			{{ item.name }}
 		</h4>
 		<div class="right">
 			<span class="btn red">delete</span>
