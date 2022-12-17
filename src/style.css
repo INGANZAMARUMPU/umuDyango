@@ -30,3 +30,7 @@ button:hover{
 button:active{
 	background-color: cadetblue;
 }
+option{
+	font-size: 1.1em;
+	padding: 10px;
+}

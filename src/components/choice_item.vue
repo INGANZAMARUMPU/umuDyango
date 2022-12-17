@@ -11,9 +11,10 @@
 		</h4>
 		<div class="field">
 			<label>Type</label>
-			<select>
-				<option>IntegerChoices</option>
-				<option>CharChoices</option>
+			<select v-model="type">
+				<option></option>
+				<option value="IntegerChoices">IntegerChoices</option>
+				<option value="TextChoices">TextChoices</option>
 			</select>
 		</div>
 		<div
@@ -60,8 +61,14 @@ export default {
       edit_field: null,
       nom:"",
       new_key:"",
-      new_value:""
+      new_value:"",
+      type:""
     }
+  },
+  watch:{
+  	type(new_val){
+  		this.item.type = new_val
+  	}
   },
   methods:{
   	renameChoice(){
