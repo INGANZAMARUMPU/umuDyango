@@ -3,7 +3,7 @@
 		<input
 			type="text"
 			placeholder="Nom du Choice"
-			@keyup.enter="renameModel"
+			@keyup.enter="renameChoice"
 			v-model="nom"
 			v-if="!item.name || edit">
 		<h4 v-else>
@@ -16,10 +16,24 @@
 				<option>CharChoices</option>
 			</select>
 		</div>
-		<div class="pair">
-			<input type="" name="" placeholder="key">
-			<input type="" name="" placeholder="value">
-			<button>&times</button>
+		<div
+			v-for="key in Object.keys(item.fields)">
+			<h4
+				v-if="edit_field=key"
+				@dblclick="edit_field=key">
+				{{ key }} = {{ item.fields[key] }}
+			</h4>
+			<div class="pair" v-if="edit_field=key">
+				<input
+					type="" name="" placeholder="key"
+					v-model="new_key"
+					@keyup.enter="changeField">
+				<input
+					type="" name="" placeholder="value"
+					v-model="new_value"
+					@keyup.enter="changeField">
+				<button>&times</button>
+			</div>
 		</div>
 		<div class="btns">
 			<span class="btn red">delete</span>
@@ -34,13 +48,15 @@ export default {
   data(){
     return {
       edit: false,
+      edit_field: null,
       nom:"",
+      new_key:"",
+      new_value:""
     }
   },
   methods:{
-  	renameModel(){
+  	renameChoice(){
   		this.item.name = ""
-  		this.nom = this.nom.replace("-", " ")
   		this.nom = this.nom.replace("-", " ")
   		for(let x of this.nom.split(" ")){
   			this.item.name += x.charAt(0).toUpperCase() + x.slice(1)

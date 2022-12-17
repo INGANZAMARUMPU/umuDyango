@@ -26,7 +26,7 @@
 				v-for="choice in choices"
 				:item="choice"
 				@click="$store.state.selected_choice=choice"/>
-			<button @click="choices.push({})">
+			<button @click="choices.push({fields:{}})">
 				[+] Ajouter
 			</button>
 		</div>
