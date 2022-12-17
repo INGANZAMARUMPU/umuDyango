@@ -10,8 +10,12 @@
 			{{ item.name }}
 		</h4>
 		<div class="btns">
-			<span class="btn red">delete</span>
-			<div class="btn blue">download</div>
+			<span class="btn red" @click="shift">
+				delete
+			</span>
+			<div class="btn blue">
+				download
+			</div>
 		</div>
 	</div>
 </template>
@@ -38,6 +42,9 @@ export default {
   	editName(){
   		this.nom = this.item.name
   		this.edit=true
+  	},
+  	shift(){
+  		this.$emit("delete")
   	}
   }
 }

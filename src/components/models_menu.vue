@@ -16,8 +16,9 @@
 			</div>
 			<div>
 				<Model
-					v-for="model in models"
+					v-for="model, i in models"
 					:item="model"
+					@delete="models.splice(i, 1)"
 					@click="$store.state.selected_model=model"/>
 			</div>
 		</div>
@@ -95,6 +96,9 @@ button{
 }
 .body{
 	flex-grow: 1;
+	max-height: calc(100% - 90px);
+	overflow-y: auto;
+	margin-bottom: 10px;
 }
 .down{
 	background-color: steelblue;
