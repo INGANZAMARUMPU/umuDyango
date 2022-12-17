@@ -1,12 +1,12 @@
 <template>
-	<div class="item" @dblclick="editName">
+	<div class="item">
 		<input
 			type="text"
 			placeholder="Nom du Choice"
 			@keyup.enter="renameChoice"
 			v-model="nom"
 			v-if="!item.name || edit">
-		<h4 v-else>
+		<h4 @dblclick="editName" v-else>
 			{{ item.name }}
 		</h4>
 		<div class="field">
@@ -19,11 +19,11 @@
 		<div
 			v-for="key in Object.keys(item.fields)">
 			<h4
-				v-if="edit_field=key"
-				@dblclick="edit_field=key">
+				v-if="edit_field!=key"
+				@dblclick="editKey(key)">
 				{{ key }} = {{ item.fields[key] }}
 			</h4>
-			<div class="pair" v-if="edit_field=key">
+			<div class="pair" v-if="edit_field==key">
 				<input
 					type="" name="" placeholder="key"
 					v-model="new_key"
@@ -32,12 +32,21 @@
 					type="" name="" placeholder="value"
 					v-model="new_value"
 					@keyup.enter="changeField">
-				<button>&times</button>
+				<button @click="delete(item.fields[key])">
+					&times
+				</button>
 			</div>
 		</div>
 		<div class="btns">
-			<span class="btn red">delete</span>
-			<div class="btn blue">new</div>
+			<span class="btn red"
+				@click="shift">
+				delete
+			</span>
+			<div
+				@click="createField"
+				class="btn blue">
+				new
+			</div>
 		</div>
 	</div>
 </template>
@@ -56,16 +65,33 @@ export default {
   },
   methods:{
   	renameChoice(){
-  		this.item.name = ""
   		this.nom = this.nom.replace("-", " ")
-  		for(let x of this.nom.split(" ")){
-  			this.item.name += x.charAt(0).toUpperCase() + x.slice(1)
-  		}
+  		this.nom = this.nom.replace(" ", "_")
+  		this.item.name = this.nom.toUpperCase()
   		this.edit = false
   	},
   	editName(){
   		this.nom = this.item.name
   		this.edit=true
+  	},
+  	createField(){
+  		this.item.fields["key"] = ""
+  		this.edit_field = "key"
+      this.new_key = "",
+      this.new_value = ""
+  	},
+  	changeField(){
+  		delete(this.item.fields[this.edit_field])
+  		this.item.fields[this.new_key.toUpperCase()] = this.new_value
+  		this.edit_field = null
+  	},
+  	editKey(key){
+  		this.edit_field = key
+      this.new_key = key,
+      this.new_value = this.item.fields[key]
+  	},
+  	shift(){
+  		this.$emit("delete")
   	}
   }
 }

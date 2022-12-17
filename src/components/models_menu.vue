@@ -23,8 +23,9 @@
 		</div>
 		<div class="body" v-else>
 			<Choice
-				v-for="choice in choices"
+				v-for="choice, i in choices"
 				:item="choice"
+				@delete="choices.splice(i, 1)"
 				@click="$store.state.selected_choice=choice"/>
 			<button @click="choices.push({fields:{}})">
 				[+] Ajouter
