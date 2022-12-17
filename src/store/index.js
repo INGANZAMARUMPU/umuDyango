@@ -8,14 +8,12 @@ export default createStore({
         name:"BigAutoField",
         fields:{
           primary_key:[null, true, false],
-          unique:[null, true, false],
         }
       },
       {
         name:"AutoField",
         fields:{
           primary_key:[null, true, false],
-          unique:[null, true, false],
         }
       },
       {

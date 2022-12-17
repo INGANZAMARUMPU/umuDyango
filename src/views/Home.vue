@@ -105,7 +105,7 @@ export default {
     current_field_fields(){
       let fields = this.$store.state.fields
       for(let field of fields){
-        if(field.name == this.current_field.fields.type){
+        if(field.name == this.temp_field.fields.type){
           return field.fields
         }
       }
@@ -116,10 +116,22 @@ export default {
     remove(field){
     },
     createField(){
-      if(!this.model.fields) this.model.fields = []
-      this.model.fields.push({
-        "champ":{}
-      })
+      if(!this.model.fields){
+        this.model.fields = [{
+          "name":"id",
+          fields:{
+            type:"BigAutoField",
+            primary_key: true,
+          }
+        }]
+      } else {
+        this.model.fields.push({
+          "name":"",
+          fields:{
+            type:"CharField"
+          }
+        })
+      }
     },
     createMeta(){
     }
