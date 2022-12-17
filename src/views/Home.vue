@@ -8,13 +8,12 @@
         [+] Meta contrainte
       </button>
     </div>
-    {{ temp_field }}
     <div class="body">
       <div class="fields">
         <Field
           v-for="field in model.fields"
           :item="field"
-          @click="temp_field=field"
+          @click="current_field=field"
           @delete="remove(field)"/>
       </div>
       <div class="properties" v-if="temp_field">
@@ -28,22 +27,22 @@
             </option>
           </select>
         </div>
-        <div class="field" v-for="key in Object.keys(current_field.fields)">
+        <div class="field" v-for="key in Object.keys(current_field_fields)">
           <label>{{ key }} ({{ current_field.fields[key] }})</label>
+          <input
+            v-model="temp_field.fields[key]"
+            type="number" v-if="typeof(current_field.fields[key]) == 'number'"/>
           <select
-            v-model="current_field.fields[key]"
-            v-if="current_field.fields[key]">
+            v-model="temp_field.fields[key]"
+            v-else-if="current_field.fields[key]">
             <option
-              v-for="value in current_field.fields[key]"
+              v-for="value in current_field_fields[key]"
               :value="value">
               {{ value }}
             </option>
           </select>
-          <input
-            v-model="current_field.fields[key]"
-            type="number" v-else-if="typeof(current_field.fields[key]) == 'number'"/>
           <select
-            v-model="current_field.fields[key]"
+            v-model="temp_field.fields[key]"
             v-else-if="key == 'choices'">
             <option
               v-for="value in 1"
@@ -52,7 +51,7 @@
             </option>
           </select>
           <input
-            v-model="current_field.fields[key]"
+            v-model="temp_field.fields[key]"
             type="text" v-else/>
         </div>
       </div>
@@ -75,11 +74,22 @@ export default {
     "$store.state.current_model"(new_val){
       this.model = new_val
     },
-    temp_field(new_val){
-      this.current_field = JSON.parse(
-        JSON.stringify(this.temp_field)
+    current_field(new_val){
+      this.temp_field = JSON.parse(
+        JSON.stringify(new_val)
       )
     },
+  },
+  computed:{
+    current_field_fields(){
+      let fields = this.$store.state.fields
+      for(let field of fields){
+        if(field.name == this.current_field.fields.type){
+          return field.fields
+        }
+      }
+      return {}
+    }
   },
   methods:{
     remove(field){
