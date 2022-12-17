@@ -165,13 +165,15 @@ export default createStore({
         name:"User",
         fields:[
           {
-            id:{
+            name:"id",
+            fields:{
               type: "BigAutoField",
               primary_key:true,
             }
           },
           {
-            password:{
+            name:"password",
+            fields:{
               type: "CharField",
               max_length:128,
               "null":true,
@@ -181,7 +183,8 @@ export default createStore({
             }
           },
           {
-            last_login:{
+            name:"last_login",
+            fields:{
               type: "DateTimeField",
               "null":true,
               blank:true,
@@ -190,7 +193,8 @@ export default createStore({
             }
           },
           {
-            is_superuser:{
+            name:"is_superuser",
+            fields:{
               type: "BooleanField",
               "null":false,
               blank:true,
@@ -199,7 +203,8 @@ export default createStore({
             }
           },
           {
-            username:{
+            name:"username",
+            fields:{
               type: "CharField",
               max_length:150,
               "null":false,
@@ -208,7 +213,8 @@ export default createStore({
             }
           },
           {
-            last_name:{
+            name:"last_name",
+            fields:{
               type: "CharField",
               max_length:150,
               "null":true,
@@ -218,7 +224,8 @@ export default createStore({
             }
           },
           {
-            email:{
+            name:"email",
+            fields:{
               type: "CharField",
               max_length:256,
               "null":true,
@@ -228,7 +235,8 @@ export default createStore({
             }
           },
           {
-            is_staff:{
+            name:"is_staff",
+            fields:{
               type: "BooleanField",
               "null":false,
               blank:true,
@@ -237,7 +245,8 @@ export default createStore({
             }
           },
           {
-            is_active:{
+            name:"is_active",
+            fields:{
               type: "BooleanField",
               "null":false,
               blank:true,
@@ -246,7 +255,8 @@ export default createStore({
             }
           },
           {
-            date_joined:{
+            name:"date_joined",
+            fields:{
               type: "DateTimeField",
               "null":true,
               blank:true,
@@ -255,7 +265,8 @@ export default createStore({
             }
           },
           {
-            first_name:{
+            name:"first_name",
+            fields:{
               type: "CharField",
               max_length:150,
               "null":true,

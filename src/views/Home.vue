@@ -1,8 +1,12 @@
 <template>
   <div class="parent">
     <div class="btns">
-      <button>Ajouter un champ</button>
-      <button>Ajouter une contrainte</button>
+      <button @click="createField">
+        Ajouter un champ
+      </button>
+      <button @click="createMeta">
+        [+] Meta contrainte
+      </button>
     </div>
     <div class="body">
       <div class="fields">
@@ -56,7 +60,7 @@
 </template>
 
 <script>
-import Field from "../components/field"
+import Field from "../components/model_field"
 export default {
   components:{ Field },
   data(){
@@ -100,6 +104,14 @@ export default {
   methods:{
     remove(field){
     },
+    createField(){
+      if(!this.model.fields) this.model.fields = []
+      this.model.fields.push({
+        "champ":{}
+      })
+    },
+    createMeta(){
+    }
   },
 }
 </script>

@@ -3,7 +3,7 @@
 		<input
 			type="text"
 			placeholder="nom du item"
-			@keyup.enter="renameModel"
+			@keyup.enter="renameField"
 			v-model="nom"
 			v-if="Object.keys(item).length==0 || edit">
 		<h4 v-else>
@@ -25,9 +25,8 @@ export default {
     }
   },
   methods:{
-  	renameModel(){
+  	renameField(){
   		this.item.name = ""
-  		this.nom = this.nom.replace("-", " ")
   		this.nom = this.nom.replace("-", " ")
   		for(let x of this.nom.split(" ")){
   			this.item.name += x.charAt(0).toUpperCase() + x.slice(1)
