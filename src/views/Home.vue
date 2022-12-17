@@ -19,7 +19,7 @@
       <div class="properties" v-if="temp_field">
         <div class="field">
           <h3>{{ temp_field.name }}</h3>
-          <select v-model="current_field.fields.type">
+          <select v-model="temp_field.fields.type">
             <option
               v-for="field in $store.state.fields"
               :value="field.name">
@@ -54,6 +54,20 @@
             v-model="temp_field.fields[key]"
             type="text" v-else/>
         </div>
+        <div class="diffs">
+          <div class="old">
+            <tr v-for="key in Object.keys(current_field.fields)">
+              <td class="key"><b>{{ key }}:</b></td>
+              <td><i>{{ current_field.fields[key] }}</i></td>
+            </tr>
+          </div>
+          <div class="new">
+            <tr v-for="key in Object.keys(temp_field.fields)">
+              <td class="key"><b>{{ key }}:</b></td>
+              <td><i>{{ temp_field.fields[key] }}</i></td>
+            </tr>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -79,6 +93,13 @@ export default {
         JSON.stringify(new_val)
       )
     },
+    "temp_field.fields.type"(new_val){
+      if(new_val != this.current_field.fields.type){
+        this.temp_field.fields = {
+          type: new_val
+        }
+      }
+    }
   },
   computed:{
     current_field_fields(){
@@ -130,5 +151,19 @@ export default {
 .field>input, .field>select{
   padding: 5px 10px;
   width: 200px;
+}
+.diffs{
+  display: flex;
+  font-size: .8em;
+}
+.diffs>*{
+  margin-right: 10px;
+}
+.key{
+  text-align: right;
+  padding-right: 5px;
+}
+.old{
+  color: #666;
 }
 </style>
