@@ -25,23 +25,32 @@
         </div>
         <div class="field" v-for="key in Object.keys(current_field_fields)">
           <label>{{ key }}</label>
-          <select v-if="current_field_fields[key]">
+          <select
+            @change="e => setValue(e, key)"
+            v-if="current_field_fields[key]">
             <option
               v-for="value in current_field_fields[key]"
               :value="value">
               {{ value }}
             </option>
           </select>
-          <input type="number" v-else-if="typeof(current_field_fields[key]) == 'number'"/>
-          <select v-else-if="key == 'choices'">
+          <input
+            @change="e => setValue(e, key)"
+            type="number" v-else-if="typeof(current_field_fields[key]) == 'number'"/>
+          <select
+            @change="e => setValue(e, key)"
+            v-else-if="key == 'choices'">
             <option
               v-for="value in 1"
               :value="value">
               not yet implemented
             </option>
           </select>
-          <input type="text" v-else/>
+          <input
+            @change="e => setValue(e, key)"
+            type="text" v-else/>
         </div>
+        {{ this.current_field }}
       </div>
     </div>
   </div>
@@ -67,7 +76,14 @@ export default {
     },
     selected_field(new_val){
       this.selected_field_name = Object.keys(new_val)[0]
-      this.current_field.type = this.selected_field[this.selected_field_name].type
+      this.current_field = {
+        type: this.selected_field[this.selected_field_name].type
+      }
+    },
+    "current_field.type"(new_val){
+      this.current_field = {
+        type: new_val
+      }
     }
   },
   computed:{
@@ -83,6 +99,13 @@ export default {
   },
   methods:{
     remove(field){
+    },
+    setValue(event, key){
+      try{
+        this.current_field[key] = eval(event.target.value)
+      } catch(ReferenceError) {
+        this.current_field[key] = event.target.value
+      }
     }
   },
 }

@@ -22,13 +22,13 @@
 			</div>
 		</div>
 		<div class="body" v-else>
-			<div style="padding: 10px;">
-				<button @click="models.push({})">
-					[+] Ajouter
-				</button>
-			</div>
-			<div>
-			</div>
+			<Choice
+				v-for="choice in choices"
+				:item="choice"
+				@click="$store.state.selected_choice=choice"/>
+			<button @click="choices.push({})">
+				[+] Ajouter
+			</button>
 		</div>
 		<button class="down">
 			Telecharger le projet
@@ -38,19 +38,26 @@
 
 <script>
 import Model from "../components/model_item"
+import Choice from "../components/choice_item"
+
 export default {
   components:{
-  	Model
+  	Model,
+  	Choice
   },
   data(){
     return {
       models:this.$store.state.models,
+      choices:this.$store.state.choices,
       active: 'models'
     }
   },
   watch:{
   	models(new_val){
   		this.$store.state.models = new_val
+  	},
+  	choices(new_val){
+  		this.$store.state.choices = new_val
   	}
   },
   mounted(){

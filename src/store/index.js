@@ -267,7 +267,8 @@ export default createStore({
         ]
       },
     ],
-    current_model:null
+    current_model:null,
+    current_choice:null,
   },
   getters: {
   },

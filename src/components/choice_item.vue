@@ -2,15 +2,28 @@
 	<div class="item" @dblclick="editName">
 		<input
 			type="text"
-			placeholder="nom du item"
+			placeholder="Nom du Choice"
 			@keyup.enter="renameModel"
 			v-model="nom"
-			v-if="Object.keys(item).length==0 || edit">
+			v-if="!item.name || edit">
 		<h4 v-else>
-			{{ Object.keys(item)[0] }}
+			{{ item.name }}
 		</h4>
-		<div class="right">
+		<div class="field">
+			<label>Type</label>
+			<select>
+				<option>IntegerChoices</option>
+				<option>CharChoices</option>
+			</select>
+		</div>
+		<div class="pair">
+			<input type="" name="" placeholder="key">
+			<input type="" name="" placeholder="value">
+			<button>&times</button>
+		</div>
+		<div class="btns">
 			<span class="btn red">delete</span>
+			<div class="btn blue">new</div>
 		</div>
 	</div>
 </template>
@@ -44,7 +57,8 @@ export default {
 <style scoped>
 .item{
 	padding: 10px;
-	border-bottom: 1px solid lightgray;
+	margin: 10px;
+	border: 1px solid lightgray;
 	cursor: default;
 }
 .item:hover{
@@ -54,25 +68,39 @@ export default {
 	padding: 5px;
 	width: 100%;
 }
-.btn{
+.btns{
+	display: flex;
+	justify-content: space-between;
 	font-size: .8em;
 }
 .btn:hover{
 	text-decoration: underline;
 	cursor: default;
 }
+.btn{
+	margin: 5px 0 0 0;
+}
 .red{
 	color: red;
 }
-.right{
+.blue{
+	color: blue;
+}
+.pair{
 	display: flex;
-	justify-content: flex-end;
-	height: 15px;
+	margin: 5px 0;
 }
-.right>span{
-	display: none;
+.field{
+	margin: 10px 0;
 }
-.item:hover .right>span{
-	display: block;
+.field>*{
+	display: flex;
+}
+select{
+	width: 100%;
+	padding: 5px 10px;
+}
+.pair>*{
+	padding: 5px 10px;
 }
 </style>
