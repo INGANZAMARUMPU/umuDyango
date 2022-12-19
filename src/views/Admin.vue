@@ -8,17 +8,58 @@
           @click="current_field=field"
           @delete="remove(field)"/>
       </div>
-      <div class="properties" v-if="temp_field">
+      <div class="properties" v-if="current_field">
         <div class="field">
-          <h3>{{ temp_field.name }}</h3>
-          <select v-model="temp_field.fields.type">
-            <option
-              v-for="field in $store.state.fields"
-              :value="field.name">
-              {{ field.name }}
-            </option>
-          </select>
+          <input
+          type="checkbox" id="list_display" 
+          v-model="list_display" name="">
+          <label for="list_display">Displayed in table</label>
         </div>
+        <div class="field">
+          <input
+          type="checkbox" id="list_editable" 
+          v-model="list_editable" name="">
+          <label for="list_editable">Editable in table</label>
+        </div>
+        <div class="field">
+          <input
+          type="checkbox" id="list_totals" 
+          v-model="list_totals" name="">
+          <label for="list_totals">Show Column totals</label>
+          <div class="sub" v-if="list_totals">
+            <div class="field">
+              <input
+              type="radio" id="avg" value="avg" 
+              v-model="list_totals_variable" name="">
+              <label for="avg">Average</label>
+            </div>
+            <div class="field">
+              <input
+              type="radio" id="sum" value="sum"
+              v-model="list_totals_variable" name="">
+              <label for="sum">Use Sum</label>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <input
+          type="checkbox" id="list_filter" 
+          v-model="list_filter" name="">
+          <label for="list_filter">Filterable</label>
+          <div class="sub" v-if="list_filter">
+            <input
+            type="checkbox" id="range_filter" 
+            v-model="range_filter" name="">
+            <label for="range_filter">Use DateRangeFilter</label>
+          </div>
+        </div>
+        <div class="field">
+          <input
+          type="checkbox" id="search_fields" 
+          v-model="search_fields" name="">
+          <label for="search_fields">Searchable field</label>
+        </div>
+        {{ current_field }}
       </div>
     </div>
   </div>
@@ -31,37 +72,22 @@ export default {
   data(){
     return {
       model: this.$store.state.current_model,
-      temp_field:null,
-      current_field:{}
+      current_field:{},
+      list_display: false,
+      list_editable: false,
+      list_totals: false,
+      list_filter: false,
+      search_fields: false,
+      list_totals_variable: "",
+      range_filter: false,
     }
   },
   watch:{
     "$store.state.current_model"(new_val){
       this.model = new_val
     },
-    current_field(new_val){
-      this.temp_field = JSON.parse(
-        JSON.stringify(new_val)
-      )
-    },
-    "temp_field.fields.type"(new_val){
-      if(new_val != this.current_field.fields.type){
-        this.temp_field.fields = {
-          type: new_val
-        }
-      }
-    }
   },
   computed:{
-    current_field_fields(){
-      let fields = this.$store.state.fields
-      for(let field of fields){
-        if(field.name == this.temp_field.fields.type){
-          return field.fields
-        }
-      }
-      return {}
-    }
   },
   methods:{
   },
@@ -84,13 +110,12 @@ export default {
   margin-right: 20px;
 }
 .field{
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
-.field>*{
-  display: block;
+input[type=checkbox], input[type=radio]{
+  margin-right: 10px;
 }
-.field>input, .field>select{
-  padding: 5px 10px;
-  width: 200px;
+.sub{
+  margin: 10px 0 0 20px;
 }
 </style>
