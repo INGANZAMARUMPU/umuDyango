@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Field from "../components/admin_field"
+import Field from "../components/serializer_menu"
 export default {
   components:{ Field },
   data(){
