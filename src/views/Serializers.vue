@@ -2,31 +2,27 @@
   <div class="parent">
     <div class="body">
       <div class="fields">
-        <Field
+        <div class="item"
           v-for="field in model.fields"
-          :item="field"
-          @click="current_field=field"
-          @delete="remove(field)"/>
+          :item="field">
+          <h4
+            @click="current_field=field">
+            {{ item.name }}
+          </h4>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Field from "../components/serializer_menu"
+import Field from "../components/serializer_item"
 export default {
   components:{ Field },
   data(){
     return {
       model: this.$store.state.current_model,
       current_field:{},
-      list_display: false,
-      list_editable: false,
-      list_totals: false,
-      list_filter: false,
-      search_fields: false,
-      list_totals_variable: "",
-      range_filter: false,
     }
   },
   watch:{
@@ -64,5 +60,13 @@ input[type=checkbox], input[type=radio]{
 }
 .sub{
   margin: 10px 0 0 20px;
+}
+.item{
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  cursor: default;
+}
+.item:hover{
+  background-color: #f0f0f0;
 }
 </style>
