@@ -34,20 +34,11 @@
             type="number" v-if="typeof(current_field.fields[key]) == 'number'"/>
           <select
             v-model="temp_field.fields[key]"
-            v-else-if="current_field.fields[key]">
+            v-else-if="Array.isArray(current_field_fields[key])">
             <option
               v-for="value in current_field_fields[key]"
               :value="value">
               {{ value }}
-            </option>
-          </select>
-          <select
-            v-model="temp_field.fields[key]"
-            v-else-if="key == 'choices'">
-            <option
-              v-for="value in 1"
-              :value="value">
-              not yet implemented
             </option>
           </select>
           <input
@@ -97,6 +88,11 @@ export default {
       if(new_val != this.current_field.fields.type){
         this.temp_field.fields = {
           type: new_val
+        }
+        if(new_val == "OneToOneField" || new_val == "ForeignKey"){
+          this.current_field_fields.model = this.$store.state.models.map(x => x.name)
+          this.current_field_fields.model.unshift(null)
+          console.log(this.temp_field.fields.model)
         }
       }
     }

@@ -24,7 +24,7 @@ export default createStore({
           blank:[null, true, false],
           default:0,
           editable:[null, true, false],
-          choices:""
+          choices:[]
         }
       },
       {
@@ -35,7 +35,7 @@ export default createStore({
           blank:[null, true, false],
           default:0,
           editable:[null, true, false],
-          choices:""
+          choices:[]
         }
       },
       {
@@ -46,7 +46,7 @@ export default createStore({
           blank:[null, true, false],
           default:0,
           editable:[null, true, false],
-          choices:""
+          choices:[]
         }
       },
       {
@@ -78,7 +78,7 @@ export default createStore({
           blank:[null, true, false],
           default:"",
           editable:[null, true, false],
-          choices:""
+          choices:[]
         }
       },
       {
