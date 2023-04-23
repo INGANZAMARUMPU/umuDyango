@@ -130,20 +130,20 @@ export default createStore({
       {
         name:"OneToOneField",
         fields:{
-          editable:[null, true, false],
           model:null,
+          on_delete:[null, "CASCADE", "SET_NULL", "SET_DEFAULT", "PROTECT"],
+          editable:[null, true, false],
           related_name:null,
-          on_delete:null,
         }
       },
       {
         name:"ForeignKey",
         fields:{
           model:null,
+          on_delete:[null, "CASCADE", "SET_NULL", "SET_DEFAULT", "PROTECT"],
           unique:[null, true, false],
           default:"",
           editable:[null, true, false],
-          on_delete:null,
           related_name:null
         }
       },

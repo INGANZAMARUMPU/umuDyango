@@ -1,5 +1,6 @@
 <template>
-	<div class="item" @dblclick="editName">
+	<div class="item" @dblclick="editName"
+	:class="{'active':$store.state.current_model?.name==item?.name}">
 		<input
 			type="text"
 			placeholder="nom du item"
@@ -79,5 +80,8 @@ export default {
 }
 .blue{
 	color: blue;
+}
+.active{
+	background-color: #eee;
 }
 </style>
